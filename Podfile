@@ -3,7 +3,7 @@
 target 'Sports App' do
   use_frameworks!
 
-pod 'Kingfisher', '~> 7.0'
-pod 'Alamofire'
-pod 'ReachabilitySwift'
+  pod 'Kingfisher', '~> 7.0'
+  pod 'Alamofire'
+  pod 'ReachabilitySwift'
 end

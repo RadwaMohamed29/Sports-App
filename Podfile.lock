@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.9.1)
+  - Alamofire (5.6.1)
   - Kingfisher (7.2.1)
   - ReachabilitySwift (5.0.0)
 
@@ -15,10 +15,10 @@ SPEC REPOS:
     - ReachabilitySwift
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
   Kingfisher: 7c084bebf7d548c623ad41bcf765fb200efed369
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
 
-PODFILE CHECKSUM: 604ef0a42a4d15d57b0a9f88d7ebf6901fd26016
+PODFILE CHECKSUM: a4f30de587c451cc2622c017250b415b1969ed50
 
 COCOAPODS: 1.11.3
