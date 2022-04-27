@@ -20,7 +20,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="mWf-jt-bTe"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toFirstScreen" modalPresentationStyle="fullScreen" id="t23-hg-hTu"/>
+                        <segue destination="bEa-Ns-ph1" kind="presentation" identifier="toFirstScreen" modalPresentationStyle="fullScreen" id="Eza-xk-9cD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36e-QS-zgX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -41,10 +41,86 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1326.0869565217392" y="136.60714285714286"/>
+            <point key="canvasLocation" x="2467" y="137"/>
+        </scene>
+        <!--Leagues Table View Controller-->
+        <scene sceneID="74Y-SK-9WU">
+            <objects>
+                <tableViewController id="bEa-Ns-ph1" customClass="LeaguesTableViewController" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="RtH-gC-BNQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="leagueCell" rowHeight="113" id="Ifr-xq-CUX" customClass="LeagueTableViewCell" customModule="Sports_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="113"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ifr-xq-CUX" id="dp7-Hb-2BQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="113"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Football" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCE-TA-dZB">
+                                            <rect key="frame" x="155" y="40" width="70.5" height="33"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" red="0.084416614129999998" green="0.51187488749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NA-A1-Kky">
+                                            <rect key="frame" x="336" y="36" width="44" height="41"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="KH8-If-Axp"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain">
+                                                <backgroundConfiguration key="background" cornerRadius="25" image="youtube"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="youtubeBtn:" destination="Ifr-xq-CUX" eventType="touchUpInside" id="IOD-58-3dG"/>
+                                            </connections>
+                                        </button>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OUz-zR-Oqo">
+                                            <rect key="frame" x="20" y="7" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="35a-l4-U7Y"/>
+                                                <constraint firstAttribute="height" constant="100" id="QFQ-p4-cTO"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="qCE-TA-dZB" firstAttribute="top" secondItem="dp7-Hb-2BQ" secondAttribute="topMargin" constant="29" id="24C-8j-ph8"/>
+                                        <constraint firstItem="qCE-TA-dZB" firstAttribute="centerY" secondItem="dp7-Hb-2BQ" secondAttribute="centerY" id="EIO-df-Jza"/>
+                                        <constraint firstItem="OUz-zR-Oqo" firstAttribute="leading" secondItem="dp7-Hb-2BQ" secondAttribute="leading" constant="20" symbolic="YES" id="EUa-nk-Jp3"/>
+                                        <constraint firstItem="OUz-zR-Oqo" firstAttribute="top" secondItem="dp7-Hb-2BQ" secondAttribute="top" constant="8" id="GPK-t8-TUd"/>
+                                        <constraint firstAttribute="bottom" secondItem="OUz-zR-Oqo" secondAttribute="bottom" constant="5" id="OVi-j5-1Mo"/>
+                                        <constraint firstItem="qCE-TA-dZB" firstAttribute="centerY" secondItem="5NA-A1-Kky" secondAttribute="centerY" id="Tnc-yT-7kk"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="5NA-A1-Kky" secondAttribute="trailing" constant="14" id="YaT-kK-tgm"/>
+                                        <constraint firstItem="qCE-TA-dZB" firstAttribute="leading" secondItem="OUz-zR-Oqo" secondAttribute="trailing" constant="35" id="ljs-jr-zqI"/>
+                                        <constraint firstItem="5NA-A1-Kky" firstAttribute="top" secondItem="dp7-Hb-2BQ" secondAttribute="topMargin" constant="25" id="msF-2w-OdP"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="leagueName" destination="qCE-TA-dZB" id="fR9-hY-7Cz"/>
+                                    <outlet property="sportImage" destination="OUz-zR-Oqo" id="bcJ-3e-Muf"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bEa-Ns-ph1" id="SIP-3q-zKN"/>
+                            <outlet property="delegate" destination="bEa-Ns-ph1" id="aey-8B-GTT"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Khq-DC-vQl"/>
+                    <connections>
+                        <outlet property="leagueTV" destination="RtH-gC-BNQ" id="XSI-9N-8KX"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4dM-E8-d3E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1486.9565217391305" y="136.60714285714286"/>
         </scene>
     </scenes>
     <resources>
+        <image name="youtube" width="48" height="48"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
