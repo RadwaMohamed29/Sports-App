@@ -22,8 +22,7 @@ class LaunchViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
             guard let self = self else {return}
-            let view = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            self.navigationController?.pushViewController(view, animated: true)
+            self.performSegue(withIdentifier: "toFirstScreen", sender: self)
         }
 
        
