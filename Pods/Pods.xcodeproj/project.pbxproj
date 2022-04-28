@@ -561,7 +561,7 @@
 		ECE463D08D1C0D3CCAB60E3FC898E4EC /* lottie-ios-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "lottie-ios-Info.plist"; sourceTree = "<group>"; };
 		EDCBD02E559C3604404A6C3799F36B2A /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Sources/Utility/Result.swift; sourceTree = "<group>"; };
 		EF4F28D917762E9CB571A83E0B70FD18 /* lottie-ios-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "lottie-ios-prefix.pch"; sourceTree = "<group>"; };
-		F015318E1EE9879494B4C768668942FE /* Pods_Sports_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sports_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F015318E1EE9879494B4C768668942FE /* Pods-Sports App */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Sports App"; path = Pods_Sports_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1022D2E4A293D81C5D15ACCDABF1295 /* GroupOutputNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GroupOutputNode.swift; path = Sources/Private/NodeRenderSystem/Nodes/OutputNodes/GroupOutputNode.swift; sourceTree = "<group>"; };
 		F21BE2F8544B8BA7E7F5D77295D809B6 /* ShapeLayerModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShapeLayerModel.swift; path = Sources/Private/Model/Layers/ShapeLayerModel.swift; sourceTree = "<group>"; };
 		F5219CDD35CB6E4F78F1FC49E764E229 /* KFImageOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KFImageOptions.swift; path = Sources/SwiftUI/KFImageOptions.swift; sourceTree = "<group>"; };
@@ -730,6 +730,7 @@
 				45399CC1C27D781BC5DC9C06F88C4CC5 /* Validation.swift */,
 				1D98110C2E5FB38CDD5958060646E4C1 /* Support Files */,
 			);
+			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -799,6 +800,7 @@
 				87434E8CFA346A24C86D845E2B3F8DB8 /* WKInterfaceImage+Kingfisher.swift */,
 				35FE3070A7049E93FE753D44125DE08E /* Support Files */,
 			);
+			name = Kingfisher;
 			path = Kingfisher;
 			sourceTree = "<group>";
 		};
@@ -979,6 +981,7 @@
 				00D86C0335885323D7BB4ACBCDBA36CD /* VectorsExtensions.swift */,
 				8DA0818E21A3F09D00B4BEB972B10549 /* Support Files */,
 			);
+			name = "lottie-ios";
 			path = "lottie-ios";
 			sourceTree = "<group>";
 		};
@@ -1016,7 +1019,7 @@
 				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */,
 				C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher */,
 				51BA97E8B5085EFFB47BC9C0B785CEA7 /* lottie-ios */,
-				F015318E1EE9879494B4C768668942FE /* Pods_Sports_App.framework */,
+				F015318E1EE9879494B4C768668942FE /* Pods-Sports App */,
 				21B03CA622E690725A6626C088E1D09F /* ReachabilitySwift */,
 			);
 			name = Products;
