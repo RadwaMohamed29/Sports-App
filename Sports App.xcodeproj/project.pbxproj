@@ -19,6 +19,8 @@
 		16D4956F2817DE1F002C8224 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16D4956E2817DE1F002C8224 /* Assets.xcassets */; };
 		16D495722817DE1F002C8224 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16D495702817DE1F002C8224 /* LaunchScreen.storyboard */; };
 		1D5648ECE8CACFA8DC468A04 /* Pods_Sports_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5054FC3CCD9D1089EC96DEF2 /* Pods_Sports_App.framework */; };
+		D34FE80028183F6B009EF15F /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FE7FF28183F6B009EF15F /* HomeCollectionViewCell.swift */; };
+		D34FE80228183F7F009EF15F /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FE80128183F7F009EF15F /* HomeCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		16D495732817DE1F002C8224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		203B9224FEDDFD8A48EB0F90 /* Pods-Sports App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sports App.debug.xcconfig"; path = "Target Support Files/Pods-Sports App/Pods-Sports App.debug.xcconfig"; sourceTree = "<group>"; };
 		5054FC3CCD9D1089EC96DEF2 /* Pods_Sports_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sports_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D34FE7FF28183F6B009EF15F /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		D34FE80128183F7F009EF15F /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 		E3CE50C755F1ED10F0647C98 /* Pods-Sports App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sports App.release.xcconfig"; path = "Target Support Files/Pods-Sports App/Pods-Sports App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +84,8 @@
 				16D495682817DE1E002C8224 /* Main.storyboard */,
 				160DC242281A01290062F30E /* LeagueTableViewCell.swift */,
 				160DC244281A01430062F30E /* LeaguesTableViewController.swift */,
+				D34FE7FF28183F6B009EF15F /* HomeCollectionViewCell.swift */,
+				D34FE80128183F7F009EF15F /* HomeCollectionViewController.swift */,
 				16D4956E2817DE1F002C8224 /* Assets.xcassets */,
 				16D495702817DE1F002C8224 /* LaunchScreen.storyboard */,
 				16D495732817DE1F002C8224 /* Info.plist */,
@@ -222,9 +228,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D34FE80028183F6B009EF15F /* HomeCollectionViewCell.swift in Sources */,
 				16D495672817DE1E002C8224 /* ViewController.swift in Sources */,
 				161586D0281939DF0069341C /* LaunchViewController.swift in Sources */,
 				16D495632817DE1E002C8224 /* AppDelegate.swift in Sources */,
+				D34FE80228183F7F009EF15F /* HomeCollectionViewController.swift in Sources */,
 				16D4956D2817DE1E002C8224 /* Sports_App.xcdatamodeld in Sources */,
 				160DC243281A012A0062F30E /* LeagueTableViewCell.swift in Sources */,
 				16D495652817DE1E002C8224 /* SceneDelegate.swift in Sources */,
