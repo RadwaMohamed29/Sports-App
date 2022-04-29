@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Kingfisher
+
+private let reuseIdentifier = "HomeCollectionCell"
 
 class HomeCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
 
@@ -16,7 +19,7 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        // self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(UINib(nibName: "HomeCollectionCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
@@ -41,14 +44,16 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return 3
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCell", for: indexPath) as! HomeCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! HomeCollectionCell
         
         // Configure the cell
-        
+        cell.homeCellLabel.text = "spider man"
+        let url = URL(string: "https://api.androidhive.info/json/movies/7.jpg")
+        cell.homeCellImage.kf.setImage(with: url)
         return cell
     }
     
@@ -88,7 +93,7 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     */
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let side = (view.frame.size.width - 1.0 )/2
+        let side = (view.frame.size.width - 16.0 )/2
         return CGSize(width: side, height: side)
     }
 
