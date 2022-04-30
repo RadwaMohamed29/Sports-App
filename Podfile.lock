@@ -1,28 +1,42 @@
 PODS:
   - Alamofire (5.6.1)
   - Kingfisher (7.2.1)
+  - KRActivityIndicatorView (3.0.7)
+  - KRProgressHUD (3.4.7):
+    - KRActivityIndicatorView (= 3.0.7)
   - lottie-ios (3.3.0)
   - ReachabilitySwift (5.0.0)
+  - SDWebImage (5.12.5):
+    - SDWebImage/Core (= 5.12.5)
+  - SDWebImage/Core (5.12.5)
 
 DEPENDENCIES:
   - Alamofire
   - Kingfisher (~> 7.0)
+  - KRProgressHUD
   - lottie-ios
   - ReachabilitySwift
+  - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
+    - KRActivityIndicatorView
+    - KRProgressHUD
     - lottie-ios
     - ReachabilitySwift
+    - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
   Kingfisher: 7c084bebf7d548c623ad41bcf765fb200efed369
+  KRActivityIndicatorView: ad69e89c4ce40c986cf580595be4829dcad0e35a
+  KRProgressHUD: a248f0bc6c9c2aed40a37b76e03ffecc7f85c887
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
 
-PODFILE CHECKSUM: 44f9b860fed037e79bf25d35503a49af9c3a90f7
+PODFILE CHECKSUM: 2e44983cce21e93cb4445034911a6df71b211e97
 
 COCOAPODS: 1.11.3

@@ -6,8 +6,30 @@
 //
 
 import UIKit
+import KRProgressHUD
+import SDWebImage
 
 class HomeCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet var allSportsCollectionView: UICollectionView!
+    
+    var sportsViewModel: AllSportsViewModel? {
+        didSet {
+            sportsViewModel?.callFuncToGetAllSports(completionHandler: {(isFinished) in
+                if !isFinished {
+                    KRProgressHUD.show()
+                }else {
+                    KRProgressHUD.dismiss()
+                }
+                
+            })
+            sportsViewModel?.getSports = {[weak self] vm in
+                DispatchQueue.main.async {
+                    self?.allSportsCollectionView.reloadData()
+                }
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +39,7 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
 
         // Register cell classes
         // self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.sportsViewModel = AllSportsViewModel()
 
         // Do any additional setup after loading the view.
     }
@@ -41,19 +64,33 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return sportsViewModel?.sportData?.sports.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCell", for: indexPath) as! HomeCollectionViewCell
         
-        // Configure the cell
+        guard let cell = allSportsCollectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HomeCollectionViewCell.self), for: indexPath) as? HomeCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        setupCell(cell: cell, indexPath: indexPath)
         
         return cell
     }
     
+    private func setupCell(cell: HomeCollectionViewCell , indexPath: IndexPath) {
+        let item = sportsViewModel?.sportData?.sports[indexPath.row]
+        guard let item = item else {
+            return
+        }
+        cell.cellLabel.text = item.sportName
+        
+        cell.cellImageView.sd_setImage(with: URL(string: (item.sportImage)), placeholderImage: UIImage(named: "sports"))
+        
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
+        
     }
 
     // MARK: UICollectionViewDelegate
