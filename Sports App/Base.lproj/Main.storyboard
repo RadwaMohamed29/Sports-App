@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,47 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="6uN-DE-cfn">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="4" id="6uN-DE-cfn">
                             <size key="itemSize" width="180" height="180"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="homeCell" id="2uP-Lp-Rvi" customClass="HomeCollectionViewCell" customModule="Sports_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="niU-bI-BY2">
-                                    <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rs9-rm-Qkw">
-                                            <rect key="frame" x="8" y="8" width="164" height="164"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ne-nl-mLc">
-                                            <rect key="frame" x="8" y="151" width="164" height="21"/>
-                                            <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="9Ne-nl-mLc" firstAttribute="leading" secondItem="niU-bI-BY2" secondAttribute="leading" constant="8" id="1g6-6a-CzH"/>
-                                        <constraint firstAttribute="bottom" secondItem="rs9-rm-Qkw" secondAttribute="bottom" constant="8" id="Lbl-g9-an8"/>
-                                        <constraint firstAttribute="bottom" secondItem="9Ne-nl-mLc" secondAttribute="bottom" constant="8" id="Myc-Y5-fXH"/>
-                                        <constraint firstItem="rs9-rm-Qkw" firstAttribute="leading" secondItem="niU-bI-BY2" secondAttribute="leading" constant="8" id="N8I-Zl-ghA"/>
-                                        <constraint firstAttribute="trailing" secondItem="rs9-rm-Qkw" secondAttribute="trailing" constant="8" id="Xij-b2-8Rq"/>
-                                        <constraint firstItem="rs9-rm-Qkw" firstAttribute="top" secondItem="niU-bI-BY2" secondAttribute="top" constant="8" id="gHL-Jm-4fl"/>
-                                        <constraint firstAttribute="trailing" secondItem="9Ne-nl-mLc" secondAttribute="trailing" constant="8" id="yGa-D5-Tl0"/>
-                                    </constraints>
-                                </collectionViewCellContentView>
-                                <connections>
-                                    <outlet property="cellImageView" destination="rs9-rm-Qkw" id="1KI-5e-pI8"/>
-                                    <outlet property="cellLabel" destination="9Ne-nl-mLc" id="eIu-mc-dw1"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
+                        <cells/>
                         <connections>
                             <outlet property="dataSource" destination="cQg-Nf-Vob" id="DfC-MJ-kpQ"/>
                             <outlet property="delegate" destination="cQg-Nf-Vob" id="0I8-2p-vj7"/>
