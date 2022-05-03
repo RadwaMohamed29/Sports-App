@@ -7,5 +7,6 @@ target 'Sports App' do
   pod 'Alamofire'
   pod 'ReachabilitySwift'
   pod 'lottie-ios'
+  pod "KRProgressHUD"
 
 end

@@ -7,11 +7,32 @@
 
 import UIKit
 import Kingfisher
+import KRProgressHUD
 
 private let reuseIdentifier = "HomeCollectionCell"
 
+
 class HomeCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
 
+    var sportsViewModel: AllSportsViewModel? {
+        didSet {
+            sportsViewModel?.callFuncToGetAllSports(completionHandler: {(isFinished) in
+                if !isFinished {
+                    KRProgressHUD.show()
+                }else {
+                    KRProgressHUD.dismiss()
+                }
+                
+            })
+            sportsViewModel?.getSports = {[weak self] vm in
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                }
+            }
+        }
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +41,7 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
 
         // Register cell classes
         self.collectionView.register(UINib(nibName: "HomeCollectionCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        self.sportsViewModel = AllSportsViewModel()
 
         // Do any additional setup after loading the view.
     }
@@ -44,17 +66,30 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 3
+        return sportsViewModel?.sportData?.sports.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! HomeCollectionCell
         
-        // Configure the cell
-        cell.homeCellLabel.text = "spider man"
-        let url = URL(string: "https://api.androidhive.info/json/movies/7.jpg")
-        cell.homeCellImage.kf.setImage(with: url)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HomeCollectionCell.self), for: indexPath) as? HomeCollectionCell else {
+            return UICollectionViewCell()
+        }
+        
+        setupCell(cell: cell, indexPath: indexPath)
         return cell
+    }
+    
+    private func setupCell(cell: HomeCollectionCell , indexPath: IndexPath) {
+        let item = sportsViewModel?.sportData?.sports[indexPath.row]
+        guard let item = item else {
+            return
+        }
+        cell.homeCellLabel.text = item.sportName
+        let url = URL(string: item.sportImage)
+        cell.homeCellImage.kf.setImage(with: url)
+        
+    
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
