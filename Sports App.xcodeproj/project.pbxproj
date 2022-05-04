@@ -30,9 +30,9 @@
 		C4CF7AAD28218B9E00BFFD91 /* CountriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CF7AAB28218B9E00BFFD91 /* CountriesViewController.xib */; };
 		C4CF7AB628218CC000BFFD91 /* CountriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF7AB428218CC000BFFD91 /* CountriesTableViewCell.swift */; };
 		C4CF7AB728218CC000BFFD91 /* CountriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CF7AB528218CC000BFFD91 /* CountriesTableViewCell.xib */; };
-		D32AD249281C34F80017376A /* HomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32AD247281C34F80017376A /* HomeCollectionCell.swift */; };
-		D32AD24A281C34F80017376A /* HomeCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D32AD248281C34F80017376A /* HomeCollectionCell.xib */; };
-		D34FE80228183F7F009EF15F /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FE80128183F7F009EF15F /* HomeCollectionViewController.swift */; };
+		D32AD249281C34F80017376A /* AllSportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32AD247281C34F80017376A /* AllSportsCollectionViewCell.swift */; };
+		D32AD24A281C34F80017376A /* AllSportsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D32AD248281C34F80017376A /* AllSportsCollectionViewCell.xib */; };
+		D34FE80228183F7F009EF15F /* AllSportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FE80128183F7F009EF15F /* AllSportsViewController.swift */; };
 		D36EFB2D28217E43004CCDD6 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36EFB2C28217E43004CCDD6 /* Countries.swift */; };
 		D36EFB2F28217E8F004CCDD6 /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36EFB2E28217E8F004CCDD6 /* CountriesViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -64,10 +64,10 @@
 		C4CF7AAB28218B9E00BFFD91 /* CountriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountriesViewController.xib; sourceTree = "<group>"; };
 		C4CF7AB428218CC000BFFD91 /* CountriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesTableViewCell.swift; sourceTree = "<group>"; };
 		C4CF7AB528218CC000BFFD91 /* CountriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountriesTableViewCell.xib; sourceTree = "<group>"; };
-		D32AD247281C34F80017376A /* HomeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionCell.swift; sourceTree = "<group>"; };
-		D32AD248281C34F80017376A /* HomeCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionCell.xib; sourceTree = "<group>"; };
-		D34FE80128183F7F009EF15F /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
-		D36EFB2C28217E43004CCDD6 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
+		D32AD247281C34F80017376A /* AllSportsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSportsCollectionViewCell.swift; sourceTree = "<group>"; };
+		D32AD248281C34F80017376A /* AllSportsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllSportsCollectionViewCell.xib; sourceTree = "<group>"; };
+		D34FE80128183F7F009EF15F /* AllSportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSportsViewController.swift; sourceTree = "<group>"; };
+		D36EFB2C28217E43004CCDD6 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Countries.swift; path = Model/Countries.swift; sourceTree = "<group>"; };
 		D36EFB2E28217E8F004CCDD6 /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		E3CE50C755F1ED10F0647C98 /* Pods-Sports App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sports App.release.xcconfig"; path = "Target Support Files/Pods-Sports App/Pods-Sports App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,9 +142,7 @@
 		C4CF7A8328216A8600BFFD91 /* LeaguesScreen */ = {
 			isa = PBXGroup;
 			children = (
-				C4CF7A9328216B3700BFFD91 /* Model */,
 				C4CF7A9228216B3500BFFD91 /* View */,
-				C4CF7A9128216B3200BFFD91 /* ViewModel */,
 			);
 			path = LeaguesScreen;
 			sourceTree = "<group>";
@@ -214,9 +212,9 @@
 		C4CF7A8D28216AF000BFFD91 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D34FE80128183F7F009EF15F /* HomeCollectionViewController.swift */,
-				D32AD247281C34F80017376A /* HomeCollectionCell.swift */,
-				D32AD248281C34F80017376A /* HomeCollectionCell.xib */,
+				D34FE80128183F7F009EF15F /* AllSportsViewController.swift */,
+				D32AD247281C34F80017376A /* AllSportsCollectionViewCell.swift */,
+				D32AD248281C34F80017376A /* AllSportsCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -244,12 +242,14 @@
 			children = (
 				D36EFB2C28217E43004CCDD6 /* Countries.swift */,
 			);
-			path = Model;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		C4CF7AAE28218BA300BFFD91 /* CountriesScreen */ = {
 			isa = PBXGroup;
 			children = (
+				C4CF7A9128216B3200BFFD91 /* ViewModel */,
+				C4CF7A9328216B3700BFFD91 /* Model */,
 				C4CF7AB028218BB100BFFD91 /* View */,
 			);
 			path = CountriesScreen;
@@ -335,7 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16D495722817DE1F002C8224 /* LaunchScreen.storyboard in Resources */,
-				D32AD24A281C34F80017376A /* HomeCollectionCell.xib in Resources */,
+				D32AD24A281C34F80017376A /* AllSportsCollectionViewCell.xib in Resources */,
 				C4CF7AB728218CC000BFFD91 /* CountriesTableViewCell.xib in Resources */,
 				C4CF7AAD28218B9E00BFFD91 /* CountriesViewController.xib in Resources */,
 				16D4956F2817DE1F002C8224 /* Assets.xcassets in Resources */,
@@ -394,7 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D32AD249281C34F80017376A /* HomeCollectionCell.swift in Sources */,
+				D32AD249281C34F80017376A /* AllSportsCollectionViewCell.swift in Sources */,
 				16D495672817DE1E002C8224 /* ViewController.swift in Sources */,
 				C4CF7A9F28216C6F00BFFD91 /* AllSportsViewModel.swift in Sources */,
 				C4CF7AAC28218B9E00BFFD91 /* CountriesViewController.swift in Sources */,
@@ -404,7 +404,7 @@
 				D36EFB2D28217E43004CCDD6 /* Countries.swift in Sources */,
 				C4CF7A9928216BCD00BFFD91 /* APIError.swift in Sources */,
 				C4CF7A9D28216C1E00BFFD91 /* AllSports.swift in Sources */,
-				D34FE80228183F7F009EF15F /* HomeCollectionViewController.swift in Sources */,
+				D34FE80228183F7F009EF15F /* AllSportsViewController.swift in Sources */,
 				D36EFB2F28217E8F004CCDD6 /* CountriesViewModel.swift in Sources */,
 				16D4956D2817DE1E002C8224 /* Sports_App.xcdatamodeld in Sources */,
 				16F39B85281CC73B001AC2E6 /* LeaguesViewController.swift in Sources */,
@@ -563,7 +563,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KF6D478446;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sports App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -594,7 +594,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KF6D478446;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sports App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

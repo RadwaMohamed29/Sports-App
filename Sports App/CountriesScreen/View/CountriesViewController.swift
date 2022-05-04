@@ -6,10 +6,27 @@
 //
 
 import UIKit
+import KRProgressHUD
 
 class CountriesViewController: UIViewController {
     
-    
+    var countriesViewModel: CountiresViewModel? {
+        didSet{
+            countriesViewModel?.callFuncToGetCountries(completionHandler: { (isFinished) in
+                if !isFinished {
+                    KRProgressHUD.show()
+                }else {
+                    KRProgressHUD.dismiss()
+                }
+            })
+            
+            countriesViewModel?.getCountries = {[weak self] _ in
+                DispatchQueue.main.async {
+                    self?.countriesTableView.reloadData()
+                }
+            }
+        }
+    }
     
     @IBOutlet weak var countriesTableView: UITableView! {
         didSet {
@@ -22,7 +39,7 @@ class CountriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
+       countriesViewModel = CountiresViewModel()
         
     }
 }
@@ -30,7 +47,7 @@ class CountriesViewController: UIViewController {
 extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return countriesViewModel?.countriesData?.countries.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,7 +63,8 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func configureCell(cell: CountriesTableViewCell, indexPath: IndexPath) {
 
-        cell.countryLabel.text = "Egypt"
+        cell.countryLabel.text = countriesViewModel?.countriesData?.countries[indexPath.row].countryName
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
