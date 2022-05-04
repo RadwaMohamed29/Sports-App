@@ -67,7 +67,7 @@
 		D32AD247281C34F80017376A /* HomeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionCell.swift; sourceTree = "<group>"; };
 		D32AD248281C34F80017376A /* HomeCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionCell.xib; sourceTree = "<group>"; };
 		D34FE80128183F7F009EF15F /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
-		D36EFB2C28217E43004CCDD6 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
+		D36EFB2C28217E43004CCDD6 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Countries.swift; path = Model/Countries.swift; sourceTree = "<group>"; };
 		D36EFB2E28217E8F004CCDD6 /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		E3CE50C755F1ED10F0647C98 /* Pods-Sports App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sports App.release.xcconfig"; path = "Target Support Files/Pods-Sports App/Pods-Sports App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,9 +142,7 @@
 		C4CF7A8328216A8600BFFD91 /* LeaguesScreen */ = {
 			isa = PBXGroup;
 			children = (
-				C4CF7A9328216B3700BFFD91 /* Model */,
 				C4CF7A9228216B3500BFFD91 /* View */,
-				C4CF7A9128216B3200BFFD91 /* ViewModel */,
 			);
 			path = LeaguesScreen;
 			sourceTree = "<group>";
@@ -244,12 +242,14 @@
 			children = (
 				D36EFB2C28217E43004CCDD6 /* Countries.swift */,
 			);
-			path = Model;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		C4CF7AAE28218BA300BFFD91 /* CountriesScreen */ = {
 			isa = PBXGroup;
 			children = (
+				C4CF7A9128216B3200BFFD91 /* ViewModel */,
+				C4CF7A9328216B3700BFFD91 /* Model */,
 				C4CF7AB028218BB100BFFD91 /* View */,
 			);
 			path = CountriesScreen;
@@ -563,7 +563,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KF6D478446;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sports App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -594,7 +594,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KF6D478446;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sports App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
