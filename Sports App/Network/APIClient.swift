@@ -12,10 +12,19 @@ protocol AllSportsProvider {
     func getAllSportsFromAPI(completion: @escaping(Result<AllSports,APIError>) -> Void)
 }
 
-class APIClient: AllSportsProvider {
+protocol CountriesProvider {
+    func getCountriesFromApi(completion: @escaping(Result<Countries,APIError>) -> Void)
+
+}
+
+class APIClient: AllSportsProvider,CountriesProvider {
     
     func getAllSportsFromAPI(completion: @escaping (Result<AllSports, APIError>) -> Void) {
         request(endPoint: .allSpors, method: .GET, completion: completion)
+    }
+    
+    func getCountriesFromApi(completion: @escaping (Result<Countries, APIError>) -> Void) {
+        request(endPoint: .countries, method: .GET, completion: completion)
     }
     
     private let baseURL = "https://www.thesportsdb.com/api/v1/json/2"
