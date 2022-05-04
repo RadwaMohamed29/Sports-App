@@ -93,7 +93,8 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
+        let countriesVC = CountriesViewController(nibName: String(describing: CountriesViewController.self), bundle: nil)
+        self.navigationController?.pushViewController(countriesVC, animated: true)
     }
 
     // MARK: UICollectionViewDelegate
