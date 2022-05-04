@@ -9,10 +9,10 @@ import UIKit
 import Kingfisher
 import KRProgressHUD
 
-private let reuseIdentifier = "HomeCollectionCell"
+private let reuseIdentifier = "AllSportsCollectionViewCell"
 
 
-class HomeCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
+class AllSportsViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
 
     var sportsViewModel: AllSportsViewModel? {
         didSet {
@@ -40,7 +40,7 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView.register(UINib(nibName: "HomeCollectionCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(UINib(nibName: "AllSportsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         self.sportsViewModel = AllSportsViewModel()
 
         // Do any additional setup after loading the view.
@@ -71,7 +71,7 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HomeCollectionCell.self), for: indexPath) as? HomeCollectionCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: AllSportsCollectionViewCell.self), for: indexPath) as? AllSportsCollectionViewCell else {
             return UICollectionViewCell()
         }
         
@@ -79,7 +79,7 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
         return cell
     }
     
-    private func setupCell(cell: HomeCollectionCell , indexPath: IndexPath) {
+    private func setupCell(cell: AllSportsCollectionViewCell , indexPath: IndexPath) {
         let item = sportsViewModel?.sportData?.sports[indexPath.row]
         guard let item = item else {
             return
