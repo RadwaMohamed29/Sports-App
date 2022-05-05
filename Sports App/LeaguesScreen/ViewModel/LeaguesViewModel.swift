@@ -6,14 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
 protocol AllLeaguesProtocol {
     func callFuncToGetAllLeagues(completionHandler:@escaping (Bool) -> Void)
     var getLeagues: ((AllLeaguesProtocol)->Void)? {get set}
     var leagueData: Leagues? {get set}
+    func openYoutube(url:String)
 }
 final class LeaguesViewModel: AllLeaguesProtocol{
-    
+
     var getLeagues: ((AllLeaguesProtocol)->Void)?
     
     var  leagueData: Leagues?{
@@ -40,6 +42,15 @@ final class LeaguesViewModel: AllLeaguesProtocol{
             
             
         })
+    }
+    
+    func openYoutube(url:String){
+        let application = UIApplication.shared
+        if application.canOpenURL(URL(string: url)!) {
+            application.open(URL(string: url)!)
+        }else {
+            application.open(URL(string: "https://\(url)")!)
+        }
     }
     
 }
