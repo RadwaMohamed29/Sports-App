@@ -12,6 +12,7 @@ enum EndPoints: String {
     case allSpors = "/all_sports.php"
     case countries = "/all_countries.php"
     case searchAllLeagues = "/search_all_leagues.php"
+    case leagues = "/search_all_leagues.php?c=England&s=Soccer"
     
     
 }
