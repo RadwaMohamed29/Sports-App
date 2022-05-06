@@ -38,7 +38,7 @@ final class TeamsViewModel: AllTeamsProtocol {
         }
         
 
-        allTeamsProvider.getTeamsFromApi(strLeague: selectedItems.league) { [weak self] result in
+        allTeamsProvider.getTeamsFromApi(strLeague: selectedItems.leagueName) { [weak self] result in
             switch result {
                 
             case .success(let teams):

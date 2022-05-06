@@ -84,7 +84,7 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let counties = leaguesViewModel?.leagueData?.countrys else {return}
 
 
-        let selectedItems = SelectedItem(sportName: choice.sportName, country: choice.countryName, league: (counties[indexPath.row].strLeague))
+        let selectedItems = SelectedItem(sportName: choice.sportName, countryName: choice.countryName, leagueName: (counties[indexPath.row].strLeague))
         let teamsVC = TeamsViewController(nibName: String(describing: TeamsViewController.self), bundle: nil)
         teamsVC.selectedItems = selectedItems
         self.navigationController?.pushViewController(teamsVC, animated: true)
