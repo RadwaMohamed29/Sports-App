@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="C3y-RR-1s6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HIz-36-Cik">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -82,7 +82,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="NgU-Fc-zta"/>
                     <connections>
-                        <segue destination="FvB-Jq-4N5" kind="presentation" identifier="toFirstScreen" modalPresentationStyle="fullScreen" id="q2c-FM-S73"/>
+                        <segue destination="C3y-RR-1s6" kind="presentation" identifier="toFirstScreen" modalPresentationStyle="fullScreen" id="AxR-Tx-iHH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCE-04-be7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -125,6 +125,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C3y-RR-1s6" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ejG-4L-fVM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JP3-xC-rY3">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
