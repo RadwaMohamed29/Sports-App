@@ -36,11 +36,23 @@ class CountriesViewController: UIViewController {
         }
     }
     
+    var sportName:String?
+    
+    var selectedRow = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
        countriesViewModel = CountiresViewModel()
         
+    }
+    
+    private func presentAlertView(title:String,message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -68,13 +80,19 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        guard let cell = tableView.cellForRow(at: indexPath) as? CountriesTableViewCell else {return}
-        cell.toggle()
-        tableView.deselectRow(at: indexPath, animated: true)
-        createRightBarButtonItem()
-        
-        
+        if(selectedRow == -1 || selectedRow == indexPath.row){
+            guard let cell = tableView.cellForRow(at: indexPath) as? CountriesTableViewCell else {return}
+            cell.toggle()
+            tableView.deselectRow(at: indexPath, animated: true)
+            createRightBarButtonItem()
+            if(selectedRow == -1 ){
+                selectedRow = indexPath.row
+            }else{
+                selectedRow = -1
+            }
+        }else{
+            presentAlertView(title: "You already selected a country",message: "Deselect it if you want to change")
+        }
     }
     
     private func createRightBarButtonItem() {
@@ -83,7 +101,12 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func didTapDone() {
-        
+        if(selectedRow != -1){
+            let choices = Choices(sportName: sportName ?? "nil", countryName: countriesViewModel?.countriesData?.countries[selectedRow].countryName ?? "nil")
+            
+        }else{
+            presentAlertView(title: "Alert!",message: "You should select one country")
+        }
     }
     
 }
