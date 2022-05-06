@@ -11,9 +11,18 @@ protocol CountriesProtocol {
     func callFuncToGetCountries(completionHandler:@escaping (Bool) -> Void)
     var getCountries: ((CountriesProtocol)->Void)? {get set}
     var countriesData: Countries? {get set}
+    var isChecked: Bool {get set}
+    var selectedRow: Int {get set}
+    func checkSelectedRow(indexPath: IndexPath)
+    
 }
 
-final class CountiresViewModel:CountriesProtocol{
+final class CountiresViewModel: CountriesProtocol {
+        
+    var selectedRow: Int = -1
+    
+    
+    var isChecked: Bool = false
     
     var countriesData: Countries? {
         didSet {
@@ -38,5 +47,23 @@ final class CountiresViewModel:CountriesProtocol{
     }
     
     var getCountries: ((CountriesProtocol) -> Void)?
+    
+    func toggle(cell: CountriesTableViewCell) {
+        self.isChecked = !self.isChecked
+        if self.isChecked {
+            cell.checkMarkImage.isHidden = false
+        }else {
+            cell.checkMarkView.backgroundColor = .systemBackground
+            cell.checkMarkImage.isHidden = true
+        }
+    }
+    
+    func checkSelectedRow(indexPath: IndexPath) {
+        if(selectedRow == -1 ){
+            selectedRow = indexPath.row
+        }else{
+            selectedRow = -1
+        }
+    }
     
 }

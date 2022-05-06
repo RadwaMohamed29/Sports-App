@@ -16,11 +16,6 @@ protocol AllSportsProtocol {
 
 final class AllSportsViewModel: AllSportsProtocol {
     
-//    func getLeaguesViewModel(for index: Int) -> LeaguesViewModel {
-//        return LeaguesViewModel(sport: (sportData?.sports[index])!)
-//    }
-    
-    
     var sportData: AllSports? {
         didSet {
             getSports!(self)
