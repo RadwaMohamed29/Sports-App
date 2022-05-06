@@ -51,8 +51,6 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         leaguesViewModel =  LeaguesViewModel()
-        print(choice?.sportName )
-        print(choice?.countryName)
 
         
     }

@@ -18,9 +18,7 @@ protocol CountriesProtocol {
 }
 
 final class CountiresViewModel: CountriesProtocol {
-    
-
-    
+        
     var selectedRow: Int = -1
     
     

@@ -11,7 +11,7 @@ import KRProgressHUD
 class CountriesViewController: UIViewController {
     
     var sportName:String?
-
+    
     
     var countriesViewModel: CountiresViewModel? {
         didSet{
@@ -39,18 +39,18 @@ class CountriesViewController: UIViewController {
         }
     }
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       countriesViewModel = CountiresViewModel()
+        
+        countriesViewModel = CountiresViewModel()
         
     }
     
     private func presentAlertView(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-
+        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
@@ -75,7 +75,7 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func configureCell(cell: CountriesTableViewCell, indexPath: IndexPath) {
-
+        
         cell.countryLabel.text = countriesViewModel?.countriesData?.countries[indexPath.row].countryName
         
     }
@@ -86,11 +86,6 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
             countriesViewModel?.toggle(cell: cell)
             tableView.deselectRow(at: indexPath, animated: true)
             createRightBarButtonItem()
-//            if(selectedRow == -1 ) {
-//                selectedRow = indexPath.row
-//            }else{
-//                selectedRow = -1
-//            }
             countriesViewModel?.checkSelectedRow(indexPath: indexPath)
         }else{
             presentAlertView(title: "You already selected a country",message: "Deselect it if you want to change")
@@ -104,23 +99,19 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     
     @objc func didTapDone() {
         if(countriesViewModel?.selectedRow != -1){
-            let choices = Choices(sportName: sportName ?? "nil", countryName: countriesViewModel?.countriesData?.countries[countriesViewModel!.selectedRow].countryName ?? "nil")
-            let leagueDetailsVc = DetailsLeagueViewController(nibName: String(describing: DetailsLeagueViewController.self), bundle: nil)
-            self.navigationController?.pushViewController(leagueDetailsVc, animated: true)
-        if(selectedRow != -1){
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let leaguesVC = storyboard.instantiateViewController(withIdentifier: "LeaguesViewController")
             as! LeaguesViewController
-          
+            
             leaguesVC.choice = Choices(sportName: sportName ?? "nil", countryName:
-            countriesViewModel?.countriesData?.countries[selectedRow].countryName ?? "nill")
+                                        countriesViewModel?.countriesData?.countries[countriesViewModel!.selectedRow].countryName ?? "nill")
             self.navigationController?.pushViewController(leaguesVC, animated: true)
             
         }else{
             presentAlertView(title: "Alert!",message: "You should select one country")
         }
     }
-    
-
-    
 }
+
+
+
