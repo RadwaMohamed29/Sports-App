@@ -9,9 +9,9 @@ import Foundation
 import CoreData
 
 protocol LocalService{
-    func saveLeagueToCoreData() throws
+    func saveLeagueToCoreData(newLeague:Countrys) throws
     func removeLeagueFromCoreData(leagueID:String) throws
-    func getFavoriteLeguesDataFromCoreData() throws
+    func getFavoriteLeguesDataFromCoreData() throws -> [Countrys]
 }
 
 final class LocalSource: LocalService{
@@ -24,14 +24,14 @@ final class LocalSource: LocalService{
         entity = NSEntityDescription.entity(forEntityName: "League", in: context)
     }
 
-    func saveLeagueToCoreData() throws{
+    func saveLeagueToCoreData(newLeague:Countrys) throws{
         let league = NSManagedObject(entity: entity, insertInto: context)
-        league.setValue("idLeague", forKey: "idLeague")
-        league.setValue("strBadge", forKey: "strBadge")
-        league.setValue("strCountry", forKey: "strCountry")
-        league.setValue("strLeague", forKey: "strLeague")
-        league.setValue("strSport", forKey: "strSport")
-        league.setValue("strYoutube", forKey: "strYoutube")
+        league.setValue(newLeague.idLeague, forKey: "idLeague")
+        league.setValue(newLeague.strBadge, forKey: "strBadge")
+        league.setValue(newLeague.strCountry, forKey: "strCountry")
+        league.setValue(newLeague.idLeague, forKey: "strLeague")
+        league.setValue(newLeague.strSport, forKey: "strSport")
+        league.setValue(newLeague.strYoutube, forKey: "strYoutube")
         
         do{
             try context.save()
@@ -55,8 +55,8 @@ final class LocalSource: LocalService{
         }
     }
     
-    func getFavoriteLeguesDataFromCoreData() throws{
-//        let favoriteLeagues:[Leagues]
+    func getFavoriteLeguesDataFromCoreData() throws -> [Countrys]{
+        var favoriteLeagues = [Countrys]()
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "League")
         
         do{
@@ -69,9 +69,9 @@ final class LocalSource: LocalService{
                 let strSport:String = favoriteLeague.value(forKey:"strSport") as? String ?? ""
                 let strYoutube:String = favoriteLeague.value(forKey:"strYoutube") as? String ?? ""
                 
-//                favouriteLeagues.append(League)
+                favoriteLeagues.append(Countrys(idLeague: idLeague, strSport: strSport, strLeague: strLeague, strCountry: strCountry, strYoutube: strYoutube, strBadge: strBadge))
             }
-//            return favoriteLeagues
+            return favoriteLeagues
         }catch let error as NSError{
             throw error
         }

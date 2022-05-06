@@ -480,18 +480,10 @@
 		D37071642824692000AE339B /* FavoritesScreen */ = {
 			isa = PBXGroup;
 			children = (
+				D374AA8A2825418D00F2EA1F /* view */,
 				D3707168282469BA00AE339B /* viewModel */,
-				D3707167282469AC00AE339B /* view */,
-				D3707165282469A100AE339B /* FavoritesViewController.swift */,
 			);
 			path = FavoritesScreen;
-			sourceTree = "<group>";
-		};
-		D3707167282469AC00AE339B /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
 			sourceTree = "<group>";
 		};
 		D3707168282469BA00AE339B /* viewModel */ = {
@@ -500,6 +492,14 @@
 				D3707169282469CD00AE339B /* FavoritesViewModel.swift */,
 			);
 			path = viewModel;
+			sourceTree = "<group>";
+		};
+		D374AA8A2825418D00F2EA1F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				D3707165282469A100AE339B /* FavoritesViewController.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		DAB9518F3944C8D840BEA55A /* Frameworks */ = {

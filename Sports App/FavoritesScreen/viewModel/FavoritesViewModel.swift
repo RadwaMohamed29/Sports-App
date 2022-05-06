@@ -6,10 +6,14 @@
 //
 
 import Foundation
+import UIKit
+
 protocol FavoritesProtocol {
-    func callFuncToGetFavoriteLeagues(completionHandler:@escaping (Bool) -> Void)
+    func callFuncToGetFavoriteLeagues(completionHandler:@escaping (Bool) -> Void) throws
     var getLeagues: ((FavoritesProtocol)->Void)? {get set}
-    var LeaguesData: AllSports? {get set}
+    var LeaguesData: [Countrys]? {get set}
+    func openYoutube(application:UIApplication, url:String)
+    func callFuncToRemoveLeagueFromFavorites(leagueID:String, completionHandler:@escaping (Bool) -> Void) throws
 }
 
 final class FavoritesViewModel:FavoritesProtocol{
@@ -19,22 +23,39 @@ final class FavoritesViewModel:FavoritesProtocol{
         localService = LocalSource(appDelegate: appDelegate)
     }
     
-    func callFuncToGetFavoriteLeagues(completionHandler: @escaping (Bool) -> Void) {
+    func callFuncToGetFavoriteLeagues(completionHandler: @escaping (Bool) -> Void) throws {
         completionHandler(false)
         do{
-            try localService.getFavoriteLeguesDataFromCoreData()
+            try LeaguesData = localService.getFavoriteLeguesDataFromCoreData()
             completionHandler(true)
         }catch let error{
-            print(error.localizedDescription)
+            throw error
         }
     }
     
     var getLeagues: ((FavoritesProtocol) -> Void)?
    
-    //don't forget to change the model
-    var LeaguesData: AllSports? {
+    var LeaguesData: [Countrys]? {
         didSet{
             getLeagues!(self)
+        }
+    }
+    
+    func openYoutube(application:UIApplication, url:String){
+        if application.canOpenURL(URL(string: url)!) {
+            application.open(URL(string: url)!)
+        }else {
+            application.open(URL(string: "https://\(url)")!)
+        }
+    }
+    
+    func callFuncToRemoveLeagueFromFavorites(leagueID: String, completionHandler: @escaping (Bool) -> Void) throws {
+        completionHandler(false)
+        do{
+            try localService.removeLeagueFromCoreData(leagueID: leagueID)
+            completionHandler(true)
+        }catch let error{
+            throw error
         }
     }
     
