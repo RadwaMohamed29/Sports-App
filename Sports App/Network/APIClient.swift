@@ -18,7 +18,7 @@ protocol CountriesProvider {
 }
 
 protocol LeaguesProvider {
-    func getLeaguesFromAPI(completion: @escaping (Result<Leagues, APIError>) -> Void)
+    func getLeaguesFromAPI(strCountry:String ,strSport:String ,completion: @escaping (Result<Leagues, APIError>) -> Void)
 }
 
 class APIClient: AllSportsProvider,CountriesProvider,LeaguesProvider {
@@ -31,16 +31,17 @@ class APIClient: AllSportsProvider,CountriesProvider,LeaguesProvider {
         request(endPoint: .countries, method: .GET, completion: completion)
     }
     
-    func getLeaguesFromAPI(completion: @escaping (Result<Leagues, APIError>) -> Void){
-        request(endPoint: .leagues, method: .GET, completion: completion)
+    func getLeaguesFromAPI(strCountry:String ,strSport:String ,completion: @escaping (Result<Leagues, APIError>) -> Void){
+        request(endPoint: .searchAllLeagues(country: strCountry, sport: strSport) , method: .GET, completion: completion)
     }
     
+
     private let baseURL = "https://www.thesportsdb.com/api/v1/json/2"
     
     
     
     func request<T:Codable>(endPoint: EndPoints, method: Methods, completion: @escaping((Result<T, APIError>) -> Void)) {
-        let path = "\(baseURL)\(endPoint.rawValue)"
+        let path = "\(baseURL)\(endPoint.path)"
         
         guard let url = URL(string: path) else {
             completion(.failure(.internalError))

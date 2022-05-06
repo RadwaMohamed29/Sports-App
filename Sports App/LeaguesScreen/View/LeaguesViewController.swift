@@ -13,6 +13,8 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var leaguesViewModel: LeaguesViewModel?{
         didSet{
+            guard let choice = choice else{return}
+            leaguesViewModel?.choice = choice
             leaguesViewModel?.callFuncToGetAllLeagues(completionHandler: { (isFinshed) in
                 if !isFinshed{
                     KRProgressHUD.show()
@@ -45,9 +47,12 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    var choice: Choices?
     override func viewDidLoad() {
         super.viewDidLoad()
         leaguesViewModel =  LeaguesViewModel()
+        print(choice?.sportName )
+        print(choice?.countryName)
 
         
     }

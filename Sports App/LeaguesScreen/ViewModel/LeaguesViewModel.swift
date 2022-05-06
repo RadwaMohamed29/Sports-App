@@ -14,8 +14,11 @@ protocol AllLeaguesProtocol {
     var leagueData: Leagues? {get set}
     func openYoutube(url:String)
 }
-final class LeaguesViewModel: AllLeaguesProtocol{
 
+final class LeaguesViewModel: AllLeaguesProtocol{
+    var choice: Choices?
+
+   
     var getLeagues: ((AllLeaguesProtocol)->Void)?
     
     var  leagueData: Leagues?{
@@ -28,7 +31,8 @@ final class LeaguesViewModel: AllLeaguesProtocol{
     
     func callFuncToGetAllLeagues(completionHandler: @escaping (Bool) -> Void) {
         completionHandler(false)
-        leaguesProvider.getLeaguesFromAPI(completion: {[weak self] result in
+        guard let choice = choice else{return}
+        leaguesProvider.getLeaguesFromAPI(strCountry: choice.countryName, strSport: choice.sportName, completion:  {[weak self] result in
             switch result{
                 
             case .success(let leagues):
@@ -39,9 +43,8 @@ final class LeaguesViewModel: AllLeaguesProtocol{
             }
             
             completionHandler(true)
-            
-            
         })
+       
     }
     
     func openYoutube(url:String){
