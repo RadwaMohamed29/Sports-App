@@ -81,7 +81,7 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(selectedRow == -1 || selectedRow == indexPath.row){
+        if(countriesViewModel?.selectedRow == -1 || countriesViewModel?.selectedRow == indexPath.row){
             guard let cell = tableView.cellForRow(at: indexPath) as? CountriesTableViewCell else {return}
             countriesViewModel?.toggle(cell: cell)
             tableView.deselectRow(at: indexPath, animated: true)
@@ -103,8 +103,10 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func didTapDone() {
-        if(selectedRow != -1){
-            let choices = Choices(sportName: sportName ?? "nil", countryName: countriesViewModel?.countriesData?.countries[selectedRow].countryName ?? "nil")
+        if(countriesViewModel?.selectedRow != -1){
+            let choices = Choices(sportName: sportName ?? "nil", countryName: countriesViewModel?.countriesData?.countries[countriesViewModel!.selectedRow].countryName ?? "nil")
+            let leagueDetailsVc = DetailsLeagueViewController(nibName: String(describing: DetailsLeagueViewController.self), bundle: nil)
+            self.navigationController?.pushViewController(leagueDetailsVc, animated: true)
             
         }else{
             presentAlertView(title: "Alert!",message: "You should select one country")
