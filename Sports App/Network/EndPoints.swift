@@ -13,6 +13,7 @@ enum EndPoints {
     case countries
     case searchAllLeagues(country:String,sport:String)
     case searchAllTeams(leagueStr: String)
+    case getEventsByTeamId(teamId: String)
     
     
     var path:String{
@@ -25,6 +26,9 @@ enum EndPoints {
             return "/search_all_leagues.php?c=\(country)&s=\(sport)"
         case .searchAllTeams(let leagueStr):
             return "/search_all_teams.php?l=\(leagueStr)"
+        case .getEventsByTeamId(let teamId):
+            return "/eventslast.php?id=\(teamId)"
+            
         }
     }
  

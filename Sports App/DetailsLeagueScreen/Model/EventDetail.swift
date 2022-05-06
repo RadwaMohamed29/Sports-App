@@ -12,15 +12,15 @@ struct LastEvents: Codable {
 }
 
 struct Event: Codable {
-    let teamVsTeam:String //strEvent
-    let homeTeamName:String //strHomeTeam
-    let awayTeamName:String //strAwayTeam
-    let homeTeamScore:String //intHomeScore
-    let awayTeamScore:String //intAwayScore
-    let eventDate:String //dateEvent
-    let eventTime:String //strTime
-    let eventImage:String //strThumb
-    let eventHighlights:String //strVideo
+    let teamVsTeam:String? //strEvent
+    let homeTeamName:String? //strHomeTeam
+    let awayTeamName:String? //strAwayTeam
+    let homeTeamScore:String? //intHomeScore
+    let awayTeamScore:String? //intAwayScore
+    let eventDate:String? //dateEvent
+    let eventTime:String? //strTime
+    let eventImage:String? //strThumb
+    let eventHighlights:String? //strVideo
     
     enum CodingKeys: String, CodingKey {
         case teamVsTeam = "strEvent"

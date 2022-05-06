@@ -25,7 +25,11 @@ protocol TeamsProvider {
     func getTeamsFromApi(strLeague: String,completion: @escaping (Result<Teams, APIError>) -> Void )
 }
 
-class APIClient: AllSportsProvider,CountriesProvider,LeaguesProvider , TeamsProvider {
+protocol EventsProvider {
+    func getEventsFromApi(teamId: String, completion: @escaping (Result<LastEvents, APIError>) -> Void)
+}
+
+class APIClient: AllSportsProvider,CountriesProvider,LeaguesProvider , TeamsProvider, EventsProvider {
 
     func getAllSportsFromAPI(completion: @escaping (Result<AllSports, APIError>) -> Void) {
         request(endPoint: .allSpors, method: .GET, completion: completion)
@@ -41,6 +45,10 @@ class APIClient: AllSportsProvider,CountriesProvider,LeaguesProvider , TeamsProv
     
     func getTeamsFromApi(strLeague: String, completion: @escaping (Result<Teams, APIError>) -> Void) {
         request(endPoint: .searchAllTeams(leagueStr: strLeague), method: .GET, completion: completion)
+    }
+    
+    func getEventsFromApi(teamId: String, completion: @escaping (Result<LastEvents, APIError>) -> Void) {
+        request(endPoint: .getEventsByTeamId(teamId: teamId), method: .GET, completion: completion)
     }
     
 
