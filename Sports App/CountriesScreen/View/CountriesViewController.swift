@@ -107,6 +107,14 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
             let choices = Choices(sportName: sportName ?? "nil", countryName: countriesViewModel?.countriesData?.countries[countriesViewModel!.selectedRow].countryName ?? "nil")
             let leagueDetailsVc = DetailsLeagueViewController(nibName: String(describing: DetailsLeagueViewController.self), bundle: nil)
             self.navigationController?.pushViewController(leagueDetailsVc, animated: true)
+        if(selectedRow != -1){
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let leaguesVC = storyboard.instantiateViewController(withIdentifier: "LeaguesViewController")
+            as! LeaguesViewController
+          
+            leaguesVC.choice = Choices(sportName: sportName ?? "nil", countryName:
+            countriesViewModel?.countriesData?.countries[selectedRow].countryName ?? "nill")
+            self.navigationController?.pushViewController(leaguesVC, animated: true)
             
         }else{
             presentAlertView(title: "Alert!",message: "You should select one country")
