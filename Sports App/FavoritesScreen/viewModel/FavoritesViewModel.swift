@@ -37,7 +37,9 @@ final class FavoritesViewModel:FavoritesProtocol{
    
     var LeaguesData: [Countrys]? {
         didSet{
+            if(LeaguesData?.count != 0 ){
             getLeagues!(self)
+            }
         }
     }
     
