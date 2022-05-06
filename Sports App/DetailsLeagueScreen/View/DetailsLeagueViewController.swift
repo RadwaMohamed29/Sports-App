@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import KRProgressHUD
 
 class DetailsLeagueViewController: UIViewController {
+    var selectedTeam: Team?
+    
     @IBOutlet weak var leagueDetailsTableView: UITableView! {
         didSet {
             leagueDetailsTableView.register(UINib(nibName: String(describing: TeamImageTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: TeamImageTableViewCell.self))
@@ -18,9 +21,33 @@ class DetailsLeagueViewController: UIViewController {
         }
     }
     
+    var eventsViewModel: EventsViewModel?{
+        didSet{
+            guard let selectedTeam = selectedTeam else {
+                return
+            }
+            eventsViewModel?.selectedTeam = selectedTeam
+            eventsViewModel?.callFuncToGetEventsFromApi(completionHandler: { (isFinshed) in
+                if !isFinshed{
+                    KRProgressHUD.show()
+                }else {
+                    KRProgressHUD.dismiss()
+                }
+            })
+            
+            eventsViewModel?.getEvents = {[weak self] _ in
+                DispatchQueue.main.async {
+                    self?.leagueDetailsTableView.reloadData()
+                }
+                
+            }
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        eventsViewModel = EventsViewModel()
     }
     
 }
@@ -49,14 +76,15 @@ extension DetailsLeagueViewController: UITableViewDelegate, UITableViewDataSourc
         switch indexPath.section {
         case 0:
             guard let teamImageCell = tableView.dequeueReusableCell(withIdentifier: String(describing: TeamImageTableViewCell.self), for: indexPath) as? TeamImageTableViewCell else { return UITableViewCell()}
+            setUpTeamImageCell(teamImageCell, indexPath)
             return teamImageCell
         case 1:
             guard let upComingCell = tableView.dequeueReusableCell(withIdentifier: String(describing: UpComingEventsTableViewCell.self), for: indexPath) as? UpComingEventsTableViewCell else { return UITableViewCell()}
-            
+            upComingCell.upComingEventsViewModel = self.eventsViewModel
             return upComingCell
         case 2:
             guard let latestEventsCell = tableView.dequeueReusableCell(withIdentifier: String(describing: LatestEventsTableViewCell.self), for: indexPath) as? LatestEventsTableViewCell else { return UITableViewCell()}
-            
+            latestEventsCell.latestEventsViewModel = self.eventsViewModel
             return latestEventsCell
         default:
             return UITableViewCell()
@@ -117,5 +145,12 @@ extension DetailsLeagueViewController: UITableViewDelegate, UITableViewDataSourc
        
         header.textLabel?.frame = header.bounds
         header.textLabel?.textAlignment = .center
+    }
+    
+    private func setUpTeamImageCell(_ cell: TeamImageTableViewCell, _ indexPath: IndexPath) {
+        guard let selectedTeam = selectedTeam else {return}
+        guard let teamImage = selectedTeam.teamImage else {return}
+        let url = URL(string: teamImage)
+        cell.teamImageView.kf.setImage(with: url)
     }
 }

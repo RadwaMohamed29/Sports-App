@@ -75,5 +75,11 @@ extension TeamsViewController: UITableViewDataSource, UITableViewDelegate {
         return 105
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailsVC = DetailsLeagueViewController(nibName: String(describing: DetailsLeagueViewController.self), bundle: nil)
+        detailsVC.selectedTeam = teamsViewModel?.teamsData?.teams[indexPath.row]
+        self.navigationController?.pushViewController(detailsVC, animated: true)
+    }
+    
     
 }
