@@ -93,8 +93,10 @@ extension DetailsLeagueViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 0: break
-            //TODO: Navigate to team detail
+        case 0:
+            let teamDetails = TeamDetailsViewController(nibName: String(describing: TeamDetailsViewController.self), bundle: nil)
+            teamDetails.selectedTeam = self.selectedTeam
+            self.navigationController?.pushViewController(teamDetails, animated: true)
         default:
             tableView.deselectRow(at: indexPath, animated: true)
         }

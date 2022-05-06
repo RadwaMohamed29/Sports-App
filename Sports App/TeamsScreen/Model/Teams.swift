@@ -16,6 +16,7 @@ struct Team: Codable {
     let teamName:String?
     let sportName: String?
     let teamLeague:String?
+    let countryName: String?
     let teamFoundedDate:String?
     let teamWebSite:String?
     let teamFacebook:String?
@@ -33,6 +34,7 @@ struct Team: Codable {
         case teamName = "strTeam"
         case sportName = "strSport"
         case teamLeague = "strLeague"
+        case countryName = "strCountry"
         case teamFoundedDate = "intFormedYear"
         case teamWebSite = "strWebsite"
         case teamFacebook = "strFacebook"
