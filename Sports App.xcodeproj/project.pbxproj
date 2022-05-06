@@ -62,6 +62,9 @@
 		D34FE80228183F7F009EF15F /* AllSportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FE80128183F7F009EF15F /* AllSportsViewController.swift */; };
 		D36EFB2D28217E43004CCDD6 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36EFB2C28217E43004CCDD6 /* Countries.swift */; };
 		D36EFB2F28217E8F004CCDD6 /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36EFB2E28217E8F004CCDD6 /* CountriesViewModel.swift */; };
+		D370716328245D6300AE339B /* LocalSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D370716228245D6300AE339B /* LocalSource.swift */; };
+		D3707166282469A100AE339B /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3707165282469A100AE339B /* FavoritesViewController.swift */; };
+		D370716A282469CD00AE339B /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3707169282469CD00AE339B /* FavoritesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,6 +126,9 @@
 		D34FE80128183F7F009EF15F /* AllSportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSportsViewController.swift; sourceTree = "<group>"; };
 		D36EFB2C28217E43004CCDD6 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Countries.swift; path = Model/Countries.swift; sourceTree = "<group>"; };
 		D36EFB2E28217E8F004CCDD6 /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
+		D370716228245D6300AE339B /* LocalSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSource.swift; sourceTree = "<group>"; };
+		D3707165282469A100AE339B /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		D3707169282469CD00AE339B /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		E3CE50C755F1ED10F0647C98 /* Pods-Sports App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sports App.release.xcconfig"; path = "Target Support Files/Pods-Sports App/Pods-Sports App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +181,8 @@
 		16D495612817DE1E002C8224 /* Sports App */ = {
 			isa = PBXGroup;
 			children = (
+				D37071642824692000AE339B /* FavoritesScreen */,
+				D370715F282451E900AE339B /* LocalDataSource */,
 				C4BB33B528251935008D5DF1 /* TeamDetailsScreen */,
 				C404B08B2824BBC70095DB9B /* TeamsScreen */,
 				C49525552823E594008B53F7 /* Utils */,
@@ -483,6 +491,39 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D370715F282451E900AE339B /* LocalDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				D370716228245D6300AE339B /* LocalSource.swift */,
+			);
+			path = LocalDataSource;
+			sourceTree = "<group>";
+		};
+		D37071642824692000AE339B /* FavoritesScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D374AA8A2825418D00F2EA1F /* view */,
+				D3707168282469BA00AE339B /* viewModel */,
+			);
+			path = FavoritesScreen;
+			sourceTree = "<group>";
+		};
+		D3707168282469BA00AE339B /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3707169282469CD00AE339B /* FavoritesViewModel.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		D374AA8A2825418D00F2EA1F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				D3707165282469A100AE339B /* FavoritesViewController.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		DAB9518F3944C8D840BEA55A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +668,8 @@
 				C4CF7AAC28218B9E00BFFD91 /* CountriesViewController.swift in Sources */,
 				C495255B2823EBDB008B53F7 /* TeamImageTableViewCell.swift in Sources */,
 				161586D0281939DF0069341C /* LaunchViewController.swift in Sources */,
+				D370716328245D6300AE339B /* LocalSource.swift in Sources */,
+				D3707166282469A100AE339B /* FavoritesViewController.swift in Sources */,
 				16D495632817DE1E002C8224 /* AppDelegate.swift in Sources */,
 				C404B08E2824BBEE0095DB9B /* TeamsViewModel.swift in Sources */,
 				C495254D2823C685008B53F7 /* UpComingEventsTableViewCell.swift in Sources */,
@@ -648,6 +691,7 @@
 				C4CF7A9528216BBD00BFFD91 /* Methods.swift in Sources */,
 				16729CD72823DA17008D7EA3 /* LeaguesViewModel.swift in Sources */,
 				C4CF7AB628218CC000BFFD91 /* CountriesTableViewCell.swift in Sources */,
+				D370716A282469CD00AE339B /* FavoritesViewModel.swift in Sources */,
 				C49525672824141F008B53F7 /* EventDetail.swift in Sources */,
 				C49525512823C6E0008B53F7 /* UpComingEventsCollectionViewCell.swift in Sources */,
 				C404B0962824BC160095DB9B /* Teams.swift in Sources */,
