@@ -21,8 +21,12 @@ protocol LeaguesProvider {
     func getLeaguesFromAPI(strCountry:String ,strSport:String ,completion: @escaping (Result<Leagues, APIError>) -> Void)
 }
 
-class APIClient: AllSportsProvider,CountriesProvider,LeaguesProvider {
-    
+protocol TeamsProvider {
+    func getTeamsFromApi(strLeague: String,completion: @escaping (Result<Teams, APIError>) -> Void )
+}
+
+class APIClient: AllSportsProvider,CountriesProvider,LeaguesProvider , TeamsProvider {
+
     func getAllSportsFromAPI(completion: @escaping (Result<AllSports, APIError>) -> Void) {
         request(endPoint: .allSpors, method: .GET, completion: completion)
     }
@@ -35,15 +39,25 @@ class APIClient: AllSportsProvider,CountriesProvider,LeaguesProvider {
         request(endPoint: .searchAllLeagues(country: strCountry, sport: strSport) , method: .GET, completion: completion)
     }
     
+    func getTeamsFromApi(strLeague: String, completion: @escaping (Result<Teams, APIError>) -> Void) {
+        request(endPoint: .searchAllTeams(leagueStr: strLeague), method: .GET, completion: completion)
+    }
+    
 
     private let baseURL = "https://www.thesportsdb.com/api/v1/json/2"
     
     
     
-    func request<T:Codable>(endPoint: EndPoints, method: Methods, completion: @escaping((Result<T, APIError>) -> Void)) {
+    private func request<T:Codable>(endPoint: EndPoints, method: Methods, completion: @escaping((Result<T, APIError>) -> Void)) {
         let path = "\(baseURL)\(endPoint.path)"
         
-        guard let url = URL(string: path) else {
+        let urlString = path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        guard let urlString = urlString else {
+            completion(.failure(.urlBadFormmated))
+            return
+        }
+
+        guard let url = URL(string: urlString) else {
             completion(.failure(.internalError))
             return
         }
@@ -53,7 +67,7 @@ class APIClient: AllSportsProvider,CountriesProvider,LeaguesProvider {
         call(with: request, completion: completion)
     }
     
-    func call<T:Codable> (with request: URLRequest, completion: @escaping((Result<T, APIError>) -> Void)) {
+    private func call<T:Codable> (with request: URLRequest, completion: @escaping((Result<T, APIError>) -> Void)) {
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
                 completion(.failure(.serverError))

@@ -13,4 +13,5 @@ enum APIError: Error {
     case internalError
     case serverError
     case parsingError
+    case urlBadFormmated
 }
