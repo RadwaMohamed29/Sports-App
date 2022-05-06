@@ -15,7 +15,7 @@ class TeamImageTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         moreInfoButton.layer.borderColor = UIColor.gray.cgColor
-        moreInfoButton.tintColor = UIColor.white
+        moreInfoButton.tintColor = UIColor.gray
         moreInfoButton.titleLabel?.textColor = UIColor.gray
         moreInfoButton.layer.cornerRadius = 12
         moreInfoButton.imageView?.tintColor = UIColor.gray
