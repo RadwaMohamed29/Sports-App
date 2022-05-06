@@ -10,6 +10,9 @@ import KRProgressHUD
 
 class CountriesViewController: UIViewController {
     
+    var sportName:String?
+
+    
     var countriesViewModel: CountiresViewModel? {
         didSet{
             countriesViewModel?.callFuncToGetCountries(completionHandler: { (isFinished) in
@@ -36,9 +39,7 @@ class CountriesViewController: UIViewController {
         }
     }
     
-    var sportName:String?
-    
-    var selectedRow = -1
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,7 @@ class CountriesViewController: UIViewController {
         
     }
     
-    private func presentAlertView(title:String,message:String){
+    private func presentAlertView(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
 
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -80,16 +81,17 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(selectedRow == -1 || selectedRow == indexPath.row){
+        if(countriesViewModel?.selectedRow == -1 || countriesViewModel?.selectedRow == indexPath.row){
             guard let cell = tableView.cellForRow(at: indexPath) as? CountriesTableViewCell else {return}
-            cell.toggle()
+            countriesViewModel?.toggle(cell: cell)
             tableView.deselectRow(at: indexPath, animated: true)
             createRightBarButtonItem()
-            if(selectedRow == -1 ){
-                selectedRow = indexPath.row
-            }else{
-                selectedRow = -1
-            }
+//            if(selectedRow == -1 ) {
+//                selectedRow = indexPath.row
+//            }else{
+//                selectedRow = -1
+//            }
+            countriesViewModel?.checkSelectedRow(indexPath: indexPath)
         }else{
             presentAlertView(title: "You already selected a country",message: "Deselect it if you want to change")
         }
@@ -101,6 +103,10 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func didTapDone() {
+        if(countriesViewModel?.selectedRow != -1){
+            let choices = Choices(sportName: sportName ?? "nil", countryName: countriesViewModel?.countriesData?.countries[countriesViewModel!.selectedRow].countryName ?? "nil")
+            let leagueDetailsVc = DetailsLeagueViewController(nibName: String(describing: DetailsLeagueViewController.self), bundle: nil)
+            self.navigationController?.pushViewController(leagueDetailsVc, animated: true)
         if(selectedRow != -1){
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let leaguesVC = storyboard.instantiateViewController(withIdentifier: "LeaguesViewController")
@@ -109,11 +115,12 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
             leaguesVC.choice = Choices(sportName: sportName ?? "nil", countryName:
             countriesViewModel?.countriesData?.countries[selectedRow].countryName ?? "nill")
             self.navigationController?.pushViewController(leaguesVC, animated: true)
-
             
         }else{
             presentAlertView(title: "Alert!",message: "You should select one country")
         }
     }
+    
+
     
 }
