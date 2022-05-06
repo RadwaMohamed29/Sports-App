@@ -77,6 +77,19 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let choice = choice else {
+            return
+        }
+        guard let counties = leaguesViewModel?.leagueData?.countrys else {return}
+
+
+        let selectedItems = SelectedItem(sportName: choice.sportName, country: choice.countryName, league: (counties[indexPath.row].strLeague))
+        let teamsVC = TeamsViewController(nibName: String(describing: TeamsViewController.self), bundle: nil)
+        teamsVC.selectedItems = selectedItems
+        self.navigationController?.pushViewController(teamsVC, animated: true)
+    }
+    
     func configureCell(cell:LeagueTableViewCell, indexPath: IndexPath){
         let item = leaguesViewModel?.leagueData?.countrys[indexPath.row]
         guard let item = item else {
