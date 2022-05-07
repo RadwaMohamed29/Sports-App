@@ -141,7 +141,7 @@ extension DetailsLeagueViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.backgroundConfiguration?.backgroundColor = UIColor.gray
+        header.backgroundConfiguration?.backgroundColor = UIColor.black
         header.textLabel?.textColor = UIColor.white
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
        
