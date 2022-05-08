@@ -12,10 +12,12 @@ protocol LocalService{
     func saveLeagueToCoreData(newLeague:Countrys) throws
     func removeLeagueFromCoreData(leagueID:String) throws
     func getFavoriteLeguesDataFromCoreData() throws -> [Countrys]
+    func isFavouriteLeague(idLeague:String) throws -> Bool
+   
 }
 
 final class LocalSource: LocalService{
-    
+ 
     private var context:NSManagedObjectContext!
     private var entity:NSEntityDescription!
     
@@ -29,7 +31,7 @@ final class LocalSource: LocalService{
         league.setValue(newLeague.idLeague, forKey: "idLeague")
         league.setValue(newLeague.strBadge, forKey: "strBadge")
         league.setValue(newLeague.strCountry, forKey: "strCountry")
-        league.setValue(newLeague.idLeague, forKey: "strLeague")
+        league.setValue(newLeague.strLeague, forKey: "strLeague")
         league.setValue(newLeague.strSport, forKey: "strSport")
         league.setValue(newLeague.strYoutube, forKey: "strYoutube")
         
@@ -76,5 +78,31 @@ final class LocalSource: LocalService{
             throw error
         }
     }
+    
+    func isFavouriteLeague(idLeague: String) throws -> Bool {
+        do{
+            let leagues = try self.getFavoriteLeguesDataFromCoreData()
+            for item in leagues{
+                if item.idLeague == idLeague {
+                    return true
+                }
+            }
+        }catch let error{
+            throw error
+        }
+        return false
+    }
+    
+//    func fetchData() -> [NSManagedObject]?{
+//        let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "League")
+//        if let arr = try? context.fetch(fetchReq) {
+//            if arr.count > 0 {
+//                return arr
+//            }
+//           return nil
+//        }else{
+//            return nil
+//        }
+//    }
     
 }

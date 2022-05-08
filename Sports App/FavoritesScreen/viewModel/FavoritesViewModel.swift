@@ -35,13 +35,8 @@ final class FavoritesViewModel:FavoritesProtocol{
     
     var getLeagues: ((FavoritesProtocol) -> Void)?
    
-    var LeaguesData: [Countrys]? {
-        didSet{
-            if(LeaguesData?.count != 0 ){
-            getLeagues!(self)
-            }
-        }
-    }
+    var LeaguesData: [Countrys]? 
+     
     
     func openYoutube(application:UIApplication, url:String){
         if application.canOpenURL(URL(string: url)!) {

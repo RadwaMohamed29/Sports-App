@@ -12,9 +12,16 @@ protocol EventsProtocol {
     var getEvents: ((EventsProtocol)->Void)? {get set}
     var eventsData: LastEvents? {get set}
     var selectedTeam: Team? {get set}
+    
+    //func checkFavouriteState(leagueId:String) -> Bool
 }
 
 final class EventsViewModel: EventsProtocol {
+
+    
+
+
+    
     var selectedTeam: Team?
     
     let eventsProvider: EventsProvider = APIClient()
@@ -47,3 +54,4 @@ final class EventsViewModel: EventsProtocol {
     
     
 }
+

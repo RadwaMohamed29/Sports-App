@@ -48,6 +48,7 @@ class DetailsLeagueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         eventsViewModel = EventsViewModel()
+       
     }
     
 }
@@ -155,4 +156,7 @@ extension DetailsLeagueViewController: UITableViewDelegate, UITableViewDataSourc
         let url = URL(string: teamImage)
         cell.teamImageView.kf.setImage(with: url)
     }
+    
+  
+    
 }
