@@ -41,11 +41,37 @@ class TeamDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        handelGestureTap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupView()
+        
+    }
+    @objc func websiteOpened(sender:UITapGestureRecognizer){
+        guard let url = (sender.view as? UILabel)?.text else { return }
+        openWebsite(url: url)
+        
+    }
+  
+    func handelGestureTap(){
+        let webSiteTapGesture = UITapGestureRecognizer(target: self, action: #selector(websiteOpened))
+        let facebookTapGesture = UITapGestureRecognizer(target: self, action: #selector(websiteOpened))
+        let twitterTapGesture = UITapGestureRecognizer(target: self, action: #selector(websiteOpened))
+        let instgramTapGesture = UITapGestureRecognizer(target: self, action: #selector(websiteOpened))
+ 
+        websiteLabel.addGestureRecognizer(webSiteTapGesture)
+        websiteLabel.isUserInteractionEnabled=true
+        
+        facebookLinkLabel.addGestureRecognizer(facebookTapGesture)
+        facebookLinkLabel.isUserInteractionEnabled=true
+        
+        instgramLinkLabel.addGestureRecognizer(instgramTapGesture)
+        instgramLinkLabel.isUserInteractionEnabled=true
+
+        twitterLinkLabel.addGestureRecognizer(twitterTapGesture)
+        twitterLinkLabel.isUserInteractionEnabled=true
     }
     
     private func setupView() {
@@ -76,6 +102,16 @@ class TeamDetailsViewController: UIViewController {
         websiteLabel.text = selectedTeam.teamWebSite
         instgramLinkLabel.text = selectedTeam.teamInstagram
         twitterLinkLabel.text = selectedTeam.teamTwitter
+        
+       
+    }
+    func openWebsite(url:String){
+        let application = UIApplication.shared
+        if application.canOpenURL(URL(string: url)!) {
+            application.open(URL(string: url)!)
+        }else {
+            application.open(URL(string: "https://\(url)")!)
+        }
     }
 
 }
