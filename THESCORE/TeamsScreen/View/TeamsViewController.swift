@@ -99,7 +99,7 @@ extension TeamsViewController: UITableViewDataSource, UITableViewDelegate {
         if(favState){
             self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         }else{
-            self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1) 
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         }
         
     }
@@ -113,7 +113,7 @@ extension TeamsViewController: UITableViewDataSource, UITableViewDelegate {
                 try  teamsViewModel?.callFuncToRemoveLeagueFromFavorites(leagueID: selectedItems!.countrys.idLeague, completionHandler: {[weak self] (isFinished) in
                     if isFinished{
                         print("removed")
-                        self!.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+                        self!.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
                     }
                 })
             }catch let error{
