@@ -22,14 +22,13 @@ class FavoritesViewController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if(favoritesViewModel != nil){
-            self.callDataFromViewModel()
-        }
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         favoritesViewModel = FavoritesViewModel(appDelegate: appDelegate)
+        self.callDataFromViewModel()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.tableView.register(UINib(nibName: "LeagueTableViewCell", bundle: nil), forCellReuseIdentifier: "leagueTableViewCell")
     }
     
