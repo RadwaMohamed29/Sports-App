@@ -1,0 +1,6 @@
+framework module Pods_THESCORE {
+  umbrella header "Pods-THESCORE-umbrella.h"
+
+  export *
+  module * { export * }
+}

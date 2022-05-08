@@ -1,4 +1,4 @@
-${PODS_ROOT}/Target Support Files/Pods-Sports App/Pods-Sports App-frameworks.sh
+${PODS_ROOT}/Target Support Files/Pods-THESCORE/Pods-THESCORE-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework
 ${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework

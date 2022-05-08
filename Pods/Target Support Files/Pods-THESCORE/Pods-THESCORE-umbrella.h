@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_Sports_AppVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_Sports_AppVersionString[];
+FOUNDATION_EXPORT double Pods_THESCOREVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_THESCOREVersionString[];
 
