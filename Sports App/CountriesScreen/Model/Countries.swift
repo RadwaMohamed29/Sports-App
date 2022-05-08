@@ -8,7 +8,7 @@
 import Foundation
 
 struct Countries: Codable {
-    let countries: [Country]
+    var countries: [Country]
 }
 
 struct Country: Codable {

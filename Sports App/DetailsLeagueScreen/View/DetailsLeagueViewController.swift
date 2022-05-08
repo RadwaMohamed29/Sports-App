@@ -97,11 +97,13 @@ extension DetailsLeagueViewController: UITableViewDelegate, UITableViewDataSourc
         case 0:
             let teamDetails = TeamDetailsViewController(nibName: String(describing: TeamDetailsViewController.self), bundle: nil)
             teamDetails.selectedTeam = self.selectedTeam
-            self.navigationController?.pushViewController(teamDetails, animated: true)
+            self.present(teamDetails, animated: true)
         default:
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
+    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
