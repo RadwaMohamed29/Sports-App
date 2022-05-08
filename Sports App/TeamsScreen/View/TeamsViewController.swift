@@ -106,10 +106,10 @@ extension TeamsViewController: UITableViewDataSource, UITableViewDelegate {
     
  
     @objc func addTapped() {
+        teamsViewModel?.checkFavouriteState(leagueId: (selectedItems?.countrys.idLeague)!)
         guard let favState = teamsViewModel?.favouriteState else{return}
         if (favState) {
             do{
-                
                 try  teamsViewModel?.callFuncToRemoveLeagueFromFavorites(leagueID: selectedItems!.countrys.idLeague, completionHandler: {[weak self] (isFinished) in
                     if isFinished{
                         print("removed")
