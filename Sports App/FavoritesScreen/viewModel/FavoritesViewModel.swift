@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Reachability
 
 protocol FavoritesProtocol {
     func callFuncToGetFavoriteLeagues(completionHandler:@escaping (Bool) -> Void) throws
@@ -14,9 +15,12 @@ protocol FavoritesProtocol {
     var LeaguesData: [Countrys]? {get set}
     func openYoutube(application:UIApplication, url:String)
     func callFuncToRemoveLeagueFromFavorites(leagueID:String, completionHandler:@escaping (Bool) -> Void) throws
+    func callFuncToCheckInternetReachability(completionHandler:@escaping (Bool) -> Void)
 }
 
 final class FavoritesViewModel:FavoritesProtocol{
+    let reachability = try! Reachability()
+        
     private let localService:LocalService
     
     init(appDelegate:AppDelegate){
@@ -56,5 +60,17 @@ final class FavoritesViewModel:FavoritesProtocol{
         }
     }
     
-    
+    func callFuncToCheckInternetReachability(completionHandler:@escaping (Bool) -> Void) {
+        reachability.whenReachable = {_ in
+            completionHandler(true)
+        }
+        reachability.whenUnreachable = {_ in
+            completionHandler(false)
+        }
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+    }
 }

@@ -124,4 +124,19 @@ class FavoritesViewController: UITableViewController {
             presentAlertView(message: error.localizedDescription)
         }
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        favoritesViewModel?.callFuncToCheckInternetReachability(completionHandler: {[weak self] (isReachable) in
+            if(isReachable){
+                guard let league = self?.favoritesViewModel?.LeaguesData?[indexPath.row] else {return}
+                
+                let selectedItems = SelectedItem(sportName: league.strSport, countryName: league.strCountry, leagueName: (league.strLeague),countrys: league)
+                let teamsVC = TeamsViewController(nibName: String(describing: TeamsViewController.self), bundle: nil)
+                teamsVC.selectedItems = selectedItems
+                self?.navigationController?.pushViewController(teamsVC, animated: true)
+            }else{
+                self?.presentAlertView(message: "There is no internet connection")
+            }
+        })
+    }
 }
