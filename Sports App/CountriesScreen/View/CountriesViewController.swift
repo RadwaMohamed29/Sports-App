@@ -12,7 +12,19 @@ class CountriesViewController: UIViewController {
     
     var sportName:String?
     
+    let searchController = UISearchController(searchResultsController: nil)
     
+    var filteredCountries: [Country] = []
+    
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
+
+
     var countriesViewModel: CountiresViewModel? {
         didSet{
             countriesViewModel?.callFuncToGetCountries(completionHandler: { (isFinished) in
@@ -46,20 +58,40 @@ class CountriesViewController: UIViewController {
         
         countriesViewModel = CountiresViewModel()
         
+        setupSearchController()
+        
     }
     
-    private func presentAlertView(title:String, message:String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+    
+    private func setupSearchController() {
         
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
-        self.present(alert, animated: true, completion: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Countries"
+        let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
+       
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
+    
+    func filterContentForSearchText(_ searchText: String,
+                                    category: Country? = nil) {
+        filteredCountries = (countriesViewModel?.countriesData?.countries.filter { (country: Country) -> Bool in
+            return country.countryName.lowercased().contains(searchText.lowercased())
+        })!
+      
+      countriesTableView.reloadData()
+    }
+
 }
 
 extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredCountries.count
+        }
         return countriesViewModel?.countriesData?.countries.count ?? 0
     }
     
@@ -76,42 +108,53 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func configureCell(cell: CountriesTableViewCell, indexPath: IndexPath) {
         
-        cell.countryLabel.text = countriesViewModel?.countriesData?.countries[indexPath.row].countryName
+        let country: Country
+        guard let countryFromViewModel =  countriesViewModel?.countriesData?.countries[indexPath.row] else {return}
+        if isFiltering {
+            country = filteredCountries[indexPath.row]
+        }else {
+            country = countryFromViewModel
+        }
+        
+        cell.countryLabel.text = country.countryName
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(countriesViewModel?.selectedRow == -1 || countriesViewModel?.selectedRow == indexPath.row){
-            guard let cell = tableView.cellForRow(at: indexPath) as? CountriesTableViewCell else {return}
-            countriesViewModel?.toggle(cell: cell)
-            tableView.deselectRow(at: indexPath, animated: true)
-            createRightBarButtonItem()
-            countriesViewModel?.checkSelectedRow(indexPath: indexPath)
-        }else{
-            presentAlertView(title: "You already selected a country",message: "Deselect it if you want to change")
-        }
+        guard let cell = tableView.cellForRow(at: indexPath) as? CountriesTableViewCell else {return}
+        countriesViewModel?.toggle(cell: cell)
+        tableView.deselectRow(at: indexPath, animated: true)
+        countriesViewModel?.checkSelectedRow(indexPath: indexPath)
+        selectedTeamFromArray(indexPath)
     }
     
-    private func createRightBarButtonItem() {
-        let doneBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(didTapDone))
-        self.navigationItem.rightBarButtonItem  = doneBarButtonItem
-    }
-    
-    @objc func didTapDone() {
-        if(countriesViewModel?.selectedRow != -1){
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let leaguesVC = storyboard.instantiateViewController(withIdentifier: "LeaguesViewController")
-            as! LeaguesViewController
-            
-            leaguesVC.choice = Choices(sportName: sportName ?? "nil", countryName:
-                                        countriesViewModel?.countriesData?.countries[countriesViewModel!.selectedRow].countryName ?? "nill")
-            self.navigationController?.pushViewController(leaguesVC, animated: true)
-            
-        }else{
-            presentAlertView(title: "Alert!",message: "You should select one country")
+    private func selectedTeamFromArray(_ indexPath: IndexPath) {
+        let country: Country
+        guard let countriesFromViewModel =  countriesViewModel?.countriesData?.countries else {return}
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let leaguesVC = storyboard.instantiateViewController(withIdentifier: "LeaguesViewController")
+        as! LeaguesViewController
+        
+        if isFiltering {
+            country = filteredCountries[indexPath.row]
+        }else {
+            country = countriesFromViewModel[indexPath.row]
         }
+        leaguesVC.choice = Choices(sportName: sportName ?? "", countryName: country.countryName)
+        self.navigationController?.pushViewController(leaguesVC, animated: true)
     }
 }
+
+
+extension CountriesViewController: UISearchResultsUpdating {
+    
+  func updateSearchResults(for searchController: UISearchController) {
+      let searchBar = searchController.searchBar
+      filterContentForSearchText(searchBar.text!)
+
+  }
+}
+
 
 
 
