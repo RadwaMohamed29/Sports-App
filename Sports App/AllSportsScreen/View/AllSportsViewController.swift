@@ -67,6 +67,7 @@ class AllSportsViewController: UICollectionViewController,UICollectionViewDelega
         cell.homeCellLabel.text = item.sportName
         let url = URL(string: item.sportImage)
         cell.homeCellImage.kf.setImage(with: url)
+       
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -76,7 +77,7 @@ class AllSportsViewController: UICollectionViewController,UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let side = (view.frame.size.width - 16.0 )/2
+        let side = (view.frame.size.width - 4.0 )/2
         return CGSize(width: side, height: side)
     }
 

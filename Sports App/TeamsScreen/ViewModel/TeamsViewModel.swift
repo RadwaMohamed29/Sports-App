@@ -12,9 +12,47 @@ protocol AllTeamsProtocol {
     var getTeams: ((AllTeamsProtocol)->Void)? {get set}
     var teamsData: Teams? {get set}
     var selectedItems: SelectedItem? {get set}
+    func saveLeagueToCoreData(newLeague:Countrys,completionHandler:@escaping (Bool) -> Void) throws
+    func callFuncToRemoveLeagueFromFavorites(leagueID:String, completionHandler:@escaping (Bool) -> Void) throws
 }
 
 final class TeamsViewModel: AllTeamsProtocol {
+    func callFuncToRemoveLeagueFromFavorites(leagueID: String, completionHandler: @escaping (Bool) -> Void) throws {
+        completionHandler(false)
+        do{
+            try localService.removeLeagueFromCoreData(leagueID: leagueID)
+            completionHandler(true)
+        }catch let error{
+            throw error
+        }
+    }
+    
+    private let localService:LocalService
+    
+    init(appDelegate:AppDelegate){
+        localService = LocalSource(appDelegate: appDelegate)
+    }
+    
+    func saveLeagueToCoreData(newLeague: Countrys, completionHandler: @escaping (Bool) -> Void) throws {
+            completionHandler(false)
+            do{
+                
+                try localService.saveLeagueToCoreData(newLeague: newLeague)
+                print("item saved")
+                completionHandler(true)
+            }catch let error{
+                throw error
+            }
+    }
+    var favouriteState: Bool?
+    func checkFavouriteState(leagueId:String)   {
+        do{
+            try favouriteState = localService.isFavouriteLeague(idLeague: leagueId)
+        }catch {
+            favouriteState = false
+        }
+
+    }
     
     var selectedItems: SelectedItem?
     

@@ -48,6 +48,7 @@ class DetailsLeagueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         eventsViewModel = EventsViewModel()
+       
     }
     
 }
@@ -141,7 +142,7 @@ extension DetailsLeagueViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.backgroundConfiguration?.backgroundColor = UIColor.gray
+        header.backgroundConfiguration?.backgroundColor = UIColor.black
         header.textLabel?.textColor = UIColor.white
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
        
@@ -155,4 +156,7 @@ extension DetailsLeagueViewController: UITableViewDelegate, UITableViewDataSourc
         let url = URL(string: teamImage)
         cell.teamImageView.kf.setImage(with: url)
     }
+    
+  
+    
 }

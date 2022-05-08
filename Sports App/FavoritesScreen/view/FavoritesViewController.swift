@@ -12,7 +12,6 @@ class FavoritesViewController: UITableViewController {
     
     private var favoritesViewModel:FavoritesProtocol? {
         didSet{
-            self.callDataFromViewModel()
             
             favoritesViewModel?.getLeagues = {[weak self] _ in
                 DispatchQueue.main.async {
@@ -21,11 +20,17 @@ class FavoritesViewController: UITableViewController {
             }
         }
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if(favoritesViewModel != nil){
+            self.callDataFromViewModel()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         favoritesViewModel = FavoritesViewModel(appDelegate: appDelegate)
+        self.tableView.register(UINib(nibName: "LeagueTableViewCell", bundle: nil), forCellReuseIdentifier: "leagueTableViewCell")
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -75,6 +80,7 @@ class FavoritesViewController: UITableViewController {
             return
         }
         cell.leagueName.text = item.strLeague
+        print(item.strLeague)
         let url = URL(string: item.strBadge)
         cell.leagueImage.kf.setImage(with: url)
         cell.youtube.accessibilityValue = item.strYoutube
@@ -104,11 +110,15 @@ class FavoritesViewController: UITableViewController {
     private func callDataFromViewModel(){
         do{
             try favoritesViewModel?.callFuncToGetFavoriteLeagues(completionHandler: {(isFinished) in
-            if !isFinished{
-                KRProgressHUD.show()
-            }else{
-                KRProgressHUD.dismiss()
-            }
+                if !isFinished{
+                    KRProgressHUD.show()
+                }else{
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
+                    KRProgressHUD.dismiss()
+                }
             })
         }catch let error{
             presentAlertView(message: error.localizedDescription)

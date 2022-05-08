@@ -24,6 +24,7 @@ class TeamsViewController: UIViewController {
             guard let selectedItems = selectedItems else {
                 return
             }
+            teamsViewModel?.checkFavouriteState(leagueId: selectedItems.countrys.idLeague)
             teamsViewModel?.selectedItems = selectedItems
             teamsViewModel?.callFuncToGetAllTeams(completionHandler: { (isFinshed) in
                 if !isFinshed{
@@ -45,9 +46,11 @@ class TeamsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        teamsViewModel = TeamsViewModel()
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        teamsViewModel = TeamsViewModel(appDelegate: appDelegate)
+        self.setNavigationItem()
     }
-
+    
 }
 
 extension TeamsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -79,6 +82,59 @@ extension TeamsViewController: UITableViewDataSource, UITableViewDelegate {
         let detailsVC = DetailsLeagueViewController(nibName: String(describing: DetailsLeagueViewController.self), bundle: nil)
         detailsVC.selectedTeam = teamsViewModel?.teamsData?.teams[indexPath.row]
         self.navigationController?.pushViewController(detailsVC, animated: true)
+    }
+    
+    private func presentAlertView(message:String) {
+        let alert = UIAlertController(title: "Error!", message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func setNavigationItem() {
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "heart"), style: .plain, target: self, action: #selector(addTapped))
+        guard let favState = teamsViewModel?.favouriteState else{return}
+        if(favState){
+            self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        }else{
+            self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1) 
+        }
+        
+    }
+    
+ 
+    @objc func addTapped() {
+        guard let favState = teamsViewModel?.favouriteState else{return}
+        if (favState) {
+            do{
+                
+                try  teamsViewModel?.callFuncToRemoveLeagueFromFavorites(leagueID: selectedItems!.countrys.idLeague, completionHandler: {[weak self] (isFinished) in
+                    if isFinished{
+                        print("removed")
+                        self!.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+                    }
+                })
+            }catch let error{
+                presentAlertView(message: error.localizedDescription)
+            }
+            
+        }else{
+            do{
+                
+                try  teamsViewModel?.saveLeagueToCoreData(newLeague: selectedItems!.countrys, completionHandler: {[weak self] (isFinished) in
+                    if isFinished{
+                        print("saved")
+                        self!.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+                    }
+                })
+            }catch let error{
+                presentAlertView(message: error.localizedDescription)
+            }
+            
+            
+        }
     }
     
     

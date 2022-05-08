@@ -51,14 +51,20 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         leaguesViewModel =  LeaguesViewModel()
-
+        
         
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Leagues"
     }
-    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.textColor = UIColor.white
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize:20 )
+        header.textLabel?.frame = header.bounds
+        
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -82,9 +88,9 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
             return
         }
         guard let counties = leaguesViewModel?.leagueData?.countrys else {return}
-
-
-        let selectedItems = SelectedItem(sportName: choice.sportName, countryName: choice.countryName, leagueName: (counties[indexPath.row].strLeague))
+        
+        
+        let selectedItems = SelectedItem(sportName: choice.sportName, countryName: choice.countryName, leagueName: (counties[indexPath.row].strLeague),countrys: counties[indexPath.row])
         let teamsVC = TeamsViewController(nibName: String(describing: TeamsViewController.self), bundle: nil)
         teamsVC.selectedItems = selectedItems
         self.navigationController?.pushViewController(teamsVC, animated: true)
