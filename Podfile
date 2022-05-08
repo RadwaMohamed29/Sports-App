@@ -1,6 +1,6 @@
  platform :ios, '12.0'
 
-target 'Sports App' do
+target 'THESCORE' do
   use_frameworks!
 
   pod 'Kingfisher', '~> 7.0'
